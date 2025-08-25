@@ -1,0 +1,1881 @@
+{
+  "Plus Size Suits": {
+    "group_1": [
+      "fabric",
+      "fabric_texture",
+      "fabric_type",
+      "dupatta_fabric"
+    ],
+    "group_2": [
+      "neckline",
+      "neckline_type"
+    ],
+    "group_3": [
+      "sleeve_length",
+      "sleeve_type"
+    ],
+    "group_4": [
+      "sleeve_style",
+      "cuff_style",
+      "cuff_detail"
+    ],
+    "group_5": [
+      "silhouette",
+      "fit",
+      "fit_type"
+    ],
+    "group_6": [
+      "length",
+      "kurta_length",
+      "hem_length"
+    ],
+    "group_7": [
+      "pant_style",
+      "trouser_style",
+      "pants_style"
+    ],
+    "group_8": [
+      "waistband",
+      "waistband_type",
+      "waistband_style",
+      "closure",
+      "pant_waistband_type",
+      "pants_waistband"
+    ],
+    "group_9": [
+      "dupatta_pattern",
+      "print_pattern",
+      "pattern",
+      "dupatta_details",
+      "dupatta_style",
+      "dupatta_design",
+      "dupatta_detailing",
+      "dupatta_detail",
+      "print_type"
+    ],
+    "group_10": [
+      "dupatta_material",
+      "texture",
+      "fabric_finish",
+      "fabric_weight",
+      "dupatta_texture"
+    ],
+    "group_11": [
+      "embellishments",
+      "embroidery",
+      "embellishment_type",
+      "embroidery_details",
+      "sleeve_detail",
+      "embellishment"
+    ],
+    "group_12": [
+      "color_scheme",
+      "color",
+      "print_colors",
+      "color_palette",
+      "color_tone"
+    ],
+    "group_13": [
+      "yoke_design",
+      "yoke_detailing",
+      "yoke_style"
+    ],
+    "group_14": [
+      "dupatta_length",
+      "dupatta_drape",
+      "dupatta_shape",
+      "dupatta_size"
+    ],
+    "group_15": [
+      "seam_details",
+      "construction_details",
+      "seams_and_stitching"
+    ],
+    "group_16": [
+      "pocket_details",
+      "pocket_count",
+      "pocket_style",
+      "pants_pockets",
+      "pocket_type"
+    ],
+    "group_17": [
+      "size_range",
+      "target_audience"
+    ],
+    "group_18": [
+      "occasion"
+    ],
+    "group_19": [
+      "dupatta_border",
+      "hem_details",
+      "dupatta_edge_finish",
+      "dupatta_edge"
+    ],
+    "group_20": [
+      "hem_style",
+      "hemline_type"
+    ],
+    "group_21": [
+      "print",
+      "fabric_pattern"
+    ],
+    "group_22": [
+      "embroidery_location"
+    ],
+    "group_23": [
+      "accent_color"
+    ],
+    "group_24": [
+      "season"
+    ],
+    "group_25": [
+      "sheen"
+    ],
+    "group_26": [
+      "style"
+    ]
+  },
+  "Sarees": {
+    "group_1": [
+      "fabric_type",
+      "fabric"
+    ],
+    "group_2": [
+      "print_type",
+      "print_pattern",
+      "pattern",
+      "print_design",
+      "pattern_type"
+    ],
+    "group_3": [
+      "color",
+      "base_color",
+      "color_scheme"
+    ],
+    "group_4": [
+      "border_type",
+      "border",
+      "border_pattern"
+    ],
+    "group_5": [
+      "embellishments",
+      "embellishment_type"
+    ],
+    "group_6": [
+      "silhouette",
+      "draping_style"
+    ],
+    "group_7": [
+      "fabric_texture",
+      "texture",
+      "fabric_finish"
+    ],
+    "group_8": [
+      "blouse_type",
+      "blouse_style"
+    ],
+    "group_9": [
+      "occasion"
+    ],
+    "group_10": [
+      "length"
+    ],
+    "group_11": [
+      "width"
+    ],
+    "group_12": [
+      "construction_details"
+    ],
+    "group_13": [
+      "pallu_style",
+      "pallu_design"
+    ],
+    "group_14": [
+      "finish"
+    ],
+    "group_15": [
+      "neckline",
+      "neckline_type"
+    ],
+    "group_16": [
+      "sleeve_type"
+    ],
+    "group_17": [
+      "waistband"
+    ],
+    "group_18": [
+      "fabric_weight"
+    ],
+    "group_19": [
+      "dupatta_style"
+    ],
+    "group_20": [
+      "closure_type"
+    ]
+  },
+  "Kurta Sets": {
+    "group_1": [
+      "neckline",
+      "neckline_type",
+      "kurta_neckline",
+      "collar_type",
+      "neckline_details"
+    ],
+    "group_2": [
+      "sleeve_length",
+      "sleeve_type",
+      "kurta_sleeve_length",
+      "kurta_sleeves",
+      "kurta_sleeve_type"
+    ],
+    "group_3": [
+      "sleeve_style",
+      "sleeve_detailing",
+      "sleeve_details",
+      "sleeve_detail",
+      "cuff_style",
+      "trouser_leg_style",
+      "cuff_type"
+    ],
+    "group_4": [
+      "silhouette",
+      "silhouette_type",
+      "kurta_silhouette",
+      "fit_type",
+      "kurta_fit",
+      "fit"
+    ],
+    "group_5": [
+      "fabric",
+      "texture",
+      "fabric_type",
+      "dupatta_material",
+      "dupatta_fabric",
+      "fabric_blend"
+    ],
+    "group_6": [
+      "waistband",
+      "waistband_style",
+      "waistband_type",
+      "trousers_waistband",
+      "pant_waistband",
+      "waistline_type",
+      "pants_waistband",
+      "trouser_waistband",
+      "waistband_details",
+      "trouser_closure",
+      "closure_details",
+      "pant_waistband_type",
+      "trousers_waistband_type"
+    ],
+    "group_7": [
+      "pant_style",
+      "trouser_style",
+      "pants_style",
+      "trousers_style",
+      "trousers_silhouette",
+      "trouser_fit",
+      "pants_silhouette",
+      "trouser_leg_design",
+      "pants_type",
+      "trouser_silhouette",
+      "pant_fit",
+      "pant_silhouette",
+      "pant_leg_style",
+      "trouser_type"
+    ],
+    "group_8": [
+      "pocket_details",
+      "pocket_detail",
+      "pocket_type",
+      "pocket_style",
+      "trousers_pockets",
+      "pant_pockets",
+      "pockets",
+      "pocket",
+      "pocket_presence",
+      "trouser_pockets",
+      "pants_pockets",
+      "trousers_pocket_type"
+    ],
+    "group_9": [
+      "hem_details",
+      "hem_style",
+      "dupatta_detailing",
+      "dupatta_edge",
+      "hemline_type",
+      "hem_detail",
+      "hem_finish",
+      "dupatta_edges",
+      "dupatta_edge_detailing",
+      "trim",
+      "fabric_accents",
+      "hem_design",
+      "dupatta_edge_finish",
+      "embellishment",
+      "border_details",
+      "hem_detailing",
+      "dupatta_edge_detail",
+      "lace_details",
+      "hem",
+      "hemline_style"
+    ],
+    "group_10": [
+      "yoke_detail",
+      "yoke_design",
+      "embroidery_type",
+      "embellishment_type",
+      "yoke_style"
+    ],
+    "group_11": [
+      "cuff_details",
+      "yoke_detailing",
+      "yoke_details",
+      "sleeve_trim"
+    ],
+    "group_12": [
+      "finish",
+      "fabric_finish",
+      "fabric_texture"
+    ],
+    "group_13": [
+      "seam_details",
+      "construction_details",
+      "seams",
+      "seam_type",
+      "construction_detail",
+      "stitching_details",
+      "seam_finish",
+      "seam_visibility",
+      "seam_construction",
+      "seams_and_stitching",
+      "seam_placement"
+    ],
+    "group_14": [
+      "pattern",
+      "print_type",
+      "print",
+      "print_pattern",
+      "embroidery_pattern",
+      "embroidery_details",
+      "dupatta_pattern",
+      "print_design",
+      "dupatta_print",
+      "pattern_type",
+      "fabric_pattern",
+      "embellishment_pattern",
+      "print_details"
+    ],
+    "group_15": [
+      "color",
+      "color_scheme",
+      "color_palette",
+      "color_tone",
+      "fabric_color",
+      "base_color",
+      "background_color"
+    ],
+    "group_16": [
+      "embellishments",
+      "embroidery",
+      "button_type",
+      "sequins",
+      "decorative_details",
+      "dupatta_tassels",
+      "tassel_accents"
+    ],
+    "group_17": [
+      "dupatta_style",
+      "dupatta",
+      "dupatta_type",
+      "dupatta_border",
+      "dupatta_size",
+      "fabric_weight",
+      "dupatta_details",
+      "dupatta_texture",
+      "dupatta_design",
+      "dupatta_shape"
+    ],
+    "group_18": [
+      "closure_type",
+      "closure",
+      "closure_system"
+    ],
+    "group_19": [
+      "occasion",
+      "occasion_suitability",
+      "product_occasion",
+      "occasion_type",
+      "use_cases",
+      "use_case",
+      "likely_use_cases"
+    ],
+    "group_20": [
+      "length",
+      "hem_length",
+      "kurta_length",
+      "hemline"
+    ],
+    "group_21": [
+      "embroidery_location",
+      "dupatta_embroidery"
+    ],
+    "group_22": [
+      "accessories"
+    ],
+    "group_23": [
+      "dupatta_length"
+    ],
+    "group_24": [
+      "skirt_style"
+    ],
+    "group_25": [
+      "trousers_fit",
+      "trouser_leg_taper",
+      "leg_taper",
+      "taper",
+      "trousers_leg_shape"
+    ],
+    "group_26": [
+      "dupatta_present",
+      "dupatta_included"
+    ],
+    "group_27": [
+      "embroidery_color",
+      "embroidery_colors",
+      "embroidery_thread_color"
+    ],
+    "group_28": [
+      "accent_color",
+      "secondary_color"
+    ],
+    "group_29": [
+      "print_colors",
+      "print_color"
+    ],
+    "group_30": [
+      "activity_level"
+    ],
+    "group_31": [
+      "season",
+      "weather"
+    ],
+    "group_32": [
+      "lining"
+    ],
+    "group_33": [
+      "drape",
+      "weight"
+    ],
+    "group_34": [
+      "dupatta_color"
+    ],
+    "group_35": [
+      "dupatta_trim",
+      "dupatta_edge_details"
+    ],
+    "group_36": [
+      "strap_details"
+    ],
+    "group_37": [
+      "piece_count"
+    ],
+    "group_38": [
+      "sheer_level"
+    ],
+    "group_39": [
+      "trouser_length"
+    ]
+  },
+  "Co-Ords": {
+    "group_1": [
+      "fabric_type",
+      "fabric",
+      "texture"
+    ],
+    "group_2": [
+      "print_type",
+      "pattern",
+      "pattern_type",
+      "print_design",
+      "print_details",
+      "fabric_pattern"
+    ],
+    "group_3": [
+      "print_colors",
+      "color_palette",
+      "color_scheme"
+    ],
+    "group_4": [
+      "neckline",
+      "top_neckline",
+      "neckline_type",
+      "tunic_neckline",
+      "collar_type"
+    ],
+    "group_5": [
+      "sleeve_type",
+      "sleeve_length",
+      "top_sleeve_length",
+      "top_sleeve_style",
+      "sleeve_style",
+      "tunic_sleeves"
+    ],
+    "group_6": [
+      "silhouette",
+      "pant_style",
+      "pants_silhouette",
+      "trouser_silhouette",
+      "trouser_style",
+      "silhouette_type",
+      "tunic_silhouette"
+    ],
+    "group_7": [
+      "hemline",
+      "top_hemline",
+      "hem_style",
+      "hemline_type",
+      "hem_details",
+      "hem_finish"
+    ],
+    "group_8": [
+      "closure_type",
+      "waistband_type",
+      "top_closure",
+      "cuff_type",
+      "sleeve_details"
+    ],
+    "group_9": [
+      "pocket_type",
+      "pocket_details",
+      "pants_pockets",
+      "trouser_pockets"
+    ],
+    "group_10": [
+      "fabric_finish",
+      "fabric_texture"
+    ],
+    "group_11": [
+      "embellishments",
+      "embellishment_type",
+      "additional_features"
+    ],
+    "group_12": [
+      "trouser_fit",
+      "pants_style",
+      "pant_leg_style",
+      "bottom_style"
+    ],
+    "group_13": [
+      "color",
+      "base_color",
+      "fabric_color"
+    ],
+    "group_14": [
+      "jacket_style",
+      "top_style"
+    ],
+    "group_15": [
+      "color_undertones"
+    ],
+    "group_16": [
+      "occasion",
+      "occasion_suitability",
+      "occasion_type"
+    ],
+    "group_17": [
+      "construction_details",
+      "additional_design_elements",
+      "trouser_waistband",
+      "bottom_waistband",
+      "pant_waistband"
+    ],
+    "group_18": [
+      "pants_waistband",
+      "waistband"
+    ],
+    "group_19": [
+      "pants_length",
+      "length"
+    ],
+    "group_20": [
+      "accessories"
+    ],
+    "group_21": [
+      "season"
+    ],
+    "group_22": [
+      "embroidery_details",
+      "embroidery_type"
+    ],
+    "group_23": [
+      "fabric_weight"
+    ],
+    "group_24": [
+      "tunic_length"
+    ],
+    "group_25": [
+      "collar_style"
+    ],
+    "group_26": [
+      "cuff_details"
+    ],
+    "group_27": [
+      "jacket_features"
+    ]
+  },
+  "Unstitched Suits": {
+    "group_1": [
+      "fabric_type",
+      "fabric_texture",
+      "fabric",
+      "dupatta_fabric"
+    ],
+    "group_2": [
+      "neckline_type",
+      "neckline",
+      "kurta_neckline"
+    ],
+    "group_3": [
+      "sleeve_type",
+      "sleeve_length",
+      "kurta_sleeve_length",
+      "sleeve_style"
+    ],
+    "group_4": [
+      "silhouette",
+      "kurta_silhouette",
+      "fit"
+    ],
+    "group_5": [
+      "embellishments",
+      "embroidery_type",
+      "accessories",
+      "embroidery",
+      "embellishment_type",
+      "embroidery_details",
+      "fabric_trim",
+      "yoke_design",
+      "dupatta_trim",
+      "hem_finish",
+      "cuff_detail",
+      "embroidery_pattern",
+      "lace_trim",
+      "tassels",
+      "sleeve_detailing"
+    ],
+    "group_6": [
+      "dupatta_style",
+      "dupatta_design",
+      "dupatta_details",
+      "dupatta_pattern",
+      "dupatta_length",
+      "dupatta_drape",
+      "dupatta_border",
+      "dupatta_material",
+      "dupatta_shape",
+      "dupatta_type"
+    ],
+    "group_7": [
+      "trouser_fit",
+      "pants_style",
+      "pant_style",
+      "trouser_style",
+      "trousers_style",
+      "closure"
+    ],
+    "group_8": [
+      "occasion"
+    ],
+    "group_9": [
+      "color_scheme",
+      "color",
+      "color_palette",
+      "print_colors",
+      "color_tone",
+      "colors"
+    ],
+    "group_10": [
+      "closure_type",
+      "pants_waistband",
+      "waistband_type",
+      "waistband",
+      "trouser_waistband",
+      "pant_waistband"
+    ],
+    "group_11": [
+      "pattern",
+      "print_type",
+      "pattern_type",
+      "print_pattern",
+      "print"
+    ],
+    "group_12": [
+      "dupatta_edge_finish",
+      "hem_style"
+    ],
+    "group_13": [
+      "hem_length",
+      "length",
+      "kurta_length",
+      "hemline"
+    ],
+    "group_14": [
+      "fabric_finish",
+      "texture",
+      "finish"
+    ],
+    "group_15": [
+      "pocket_type",
+      "trousers_pockets",
+      "trouser_pockets",
+      "pockets"
+    ],
+    "group_16": [
+      "construction_details",
+      "seams"
+    ],
+    "group_17": [
+      "trousers_waistband",
+      "waistband_details"
+    ],
+    "group_18": [
+      "fabric_weight"
+    ],
+    "group_19": [
+      "lining"
+    ],
+    "group_20": [
+      "season"
+    ],
+    "group_21": [
+      "yoke_style"
+    ],
+    "group_22": [
+      "base_color"
+    ],
+    "group_23": [
+      "fit_type"
+    ],
+    "group_24": [
+      "seam_finish"
+    ],
+    "group_25": [
+      "leg_taper"
+    ]
+  },
+  "Plus Size Kurtas": {
+    "group_1": [
+      "fit",
+      "silhouette",
+      "fit_type"
+    ],
+    "group_2": [
+      "neckline",
+      "neckline_type"
+    ],
+    "group_3": [
+      "sleeve_length",
+      "sleeve_style",
+      "sleeve_type"
+    ],
+    "group_4": [
+      "fabric_type"
+    ],
+    "group_5": [
+      "fabric_texture",
+      "finish",
+      "fabric_finish"
+    ],
+    "group_6": [
+      "length"
+    ],
+    "group_7": [
+      "design_style"
+    ],
+    "group_8": [
+      "occasion"
+    ],
+    "group_9": [
+      "fabric_weight"
+    ],
+    "group_10": [
+      "branding"
+    ],
+    "group_11": [
+      "embellishments",
+      "yoke_detail",
+      "yoke_detailing",
+      "embellishment_type"
+    ],
+    "group_12": [
+      "pattern_type",
+      "pattern",
+      "print_type",
+      "embellishment_pattern"
+    ],
+    "group_13": [
+      "color",
+      "color_scheme"
+    ],
+    "group_14": [
+      "closure_type"
+    ],
+    "group_15": [
+      "cuff_detailing",
+      "sleeve_detail",
+      "cuff_detail"
+    ],
+    "group_16": [
+      "hem_style",
+      "trim_details"
+    ],
+    "group_17": [
+      "pockets",
+      "pocket"
+    ],
+    "group_18": [
+      "waistband_style"
+    ],
+    "group_19": [
+      "construction_detail"
+    ]
+  },
+  "Loungewear": {
+    "group_1": [
+      "collar_type",
+      "top_neckline",
+      "neckline",
+      "neckline_type"
+    ],
+    "group_2": [
+      "sleeve_length",
+      "top_sleeve_length",
+      "sleeve_type",
+      "top_sleeve_type"
+    ],
+    "group_3": [
+      "sleeve_style",
+      "top_sleeve_style",
+      "sleeve_detail"
+    ],
+    "group_4": [
+      "silhouette",
+      "top_silhouette",
+      "fit_type"
+    ],
+    "group_5": [
+      "hemline",
+      "hem_style"
+    ],
+    "group_6": [
+      "closure_type"
+    ],
+    "group_7": [
+      "pocket_count",
+      "pocket_configuration",
+      "pockets"
+    ],
+    "group_8": [
+      "pocket_style",
+      "pants_pockets"
+    ],
+    "group_9": [
+      "waistband_type",
+      "pants_waistband"
+    ],
+    "group_10": [
+      "fabric_texture",
+      "fabric_finish",
+      "finish_type"
+    ],
+    "group_11": [
+      "print_type",
+      "print_design"
+    ],
+    "group_12": [
+      "color",
+      "print_color"
+    ],
+    "group_13": [
+      "fabric_type",
+      "fabric",
+      "fabric_material"
+    ],
+    "group_14": [
+      "color_scheme",
+      "print_colors"
+    ],
+    "group_15": [
+      "pants_style",
+      "pants_leg_cut",
+      "pants_leg_detail"
+    ],
+    "group_16": [
+      "fabric_weight"
+    ],
+    "group_17": [
+      "embellishments",
+      "seam_details",
+      "construction_details",
+      "stitching_details"
+    ],
+    "group_18": [
+      "top_length",
+      "hem_length"
+    ],
+    "group_19": [
+      "pants_length"
+    ],
+    "group_20": [
+      "cuff_type"
+    ],
+    "group_21": [
+      "print_density"
+    ],
+    "group_22": [
+      "top_style"
+    ],
+    "group_23": [
+      "sizes_available"
+    ],
+    "group_24": [
+      "suitable_use",
+      "occasion"
+    ]
+  },
+  "Dresses": {
+    "group_1": [
+      "color",
+      "color_tone",
+      "color_palette",
+      "color_scheme"
+    ],
+    "group_2": [
+      "fabric_type",
+      "fabric"
+    ],
+    "group_3": [
+      "fabric_texture",
+      "finish",
+      "texture",
+      "fabric_finish",
+      "sheen"
+    ],
+    "group_4": [
+      "pattern_type",
+      "embellishments",
+      "print",
+      "print_type",
+      "fabric_pattern",
+      "embellishment_type",
+      "embroidery_type"
+    ],
+    "group_5": [
+      "sleeve_type",
+      "sleeve_length",
+      "sleeve_style"
+    ],
+    "group_6": [
+      "neckline_type",
+      "neckline"
+    ],
+    "group_7": [
+      "silhouette",
+      "silhouette_type"
+    ],
+    "group_8": [
+      "length",
+      "hemline",
+      "dress_length",
+      "hemline_length",
+      "skirt_length"
+    ],
+    "group_9": [
+      "occasion",
+      "suitable_occasions",
+      "likely_use_cases"
+    ],
+    "group_10": [
+      "cultural_inspiration"
+    ],
+    "group_11": [
+      "accessories",
+      "details"
+    ],
+    "group_12": [
+      "strap_type",
+      "strap_style"
+    ],
+    "group_13": [
+      "closure",
+      "closure_type"
+    ],
+    "group_14": [
+      "pockets",
+      "pocket_presence",
+      "pocket_type"
+    ],
+    "group_15": [
+      "construction_details"
+    ],
+    "group_16": [
+      "waistline",
+      "waist_style",
+      "waistline_detail",
+      "waist_details",
+      "bodice_style"
+    ],
+    "group_17": [
+      "cuff_style",
+      "cuff_type",
+      "cuff"
+    ],
+    "group_18": [
+      "yoke_details"
+    ],
+    "group_19": [
+      "hem_details",
+      "hem_finish",
+      "hemline_type"
+    ],
+    "group_20": [
+      "print_colors"
+    ],
+    "group_21": [
+      "embroidery_color"
+    ],
+    "group_22": [
+      "skirt_style"
+    ],
+    "group_23": [
+      "collar"
+    ]
+  },
+  "Plus Size Kurta Sets": {
+    "group_1": [
+      "fabric_type",
+      "fabric"
+    ],
+    "group_2": [
+      "neckline_type",
+      "neckline"
+    ],
+    "group_3": [
+      "sleeve_length",
+      "sleeve_type"
+    ],
+    "group_4": [
+      "sleeve_style",
+      "sleeve_details"
+    ],
+    "group_5": [
+      "silhouette",
+      "fit_type"
+    ],
+    "group_6": [
+      "length",
+      "hem_length",
+      "hemline"
+    ],
+    "group_7": [
+      "waistband_type",
+      "waistband"
+    ],
+    "group_8": [
+      "pocket_type",
+      "pant_pockets",
+      "pockets",
+      "pant_details"
+    ],
+    "group_9": [
+      "embellishment",
+      "embellishments"
+    ],
+    "group_10": [
+      "print_pattern",
+      "print_type"
+    ],
+    "group_11": [
+      "color_scheme",
+      "color_palette"
+    ],
+    "group_12": [
+      "fabric_texture",
+      "fabric_finish"
+    ],
+    "group_13": [
+      "occasion",
+      "occasion_suitability"
+    ],
+    "group_14": [
+      "sleeve_trim"
+    ],
+    "group_15": [
+      "pant_style"
+    ],
+    "group_16": [
+      "yoke_style"
+    ],
+    "group_17": [
+      "closure",
+      "closure_type"
+    ],
+    "group_18": [
+      "print_colors"
+    ],
+    "group_19": [
+      "dupatta_details"
+    ]
+  },
+  "Kurta": {
+    "group_1": [
+      "fabric_type",
+      "fabric_texture",
+      "fabric"
+    ],
+    "group_2": [
+      "neckline_type",
+      "neckline",
+      "collar_style",
+      "collar_type",
+      "neckline_style"
+    ],
+    "group_3": [
+      "sleeve_length",
+      "sleeve_style",
+      "sleeve_type"
+    ],
+    "group_4": [
+      "silhouette",
+      "silhouette_type",
+      "fit",
+      "fit_type"
+    ],
+    "group_5": [
+      "length",
+      "hem_length",
+      "hemline"
+    ],
+    "group_6": [
+      "embroidery_type",
+      "hem_finish",
+      "embellishments",
+      "decorative_elements",
+      "embellishment_type",
+      "embroidery_details",
+      "embroidery"
+    ],
+    "group_7": [
+      "color",
+      "main_color"
+    ],
+    "group_8": [
+      "pattern",
+      "print_type",
+      "pattern_type",
+      "print_design",
+      "print_pattern",
+      "embellishment_pattern",
+      "fabric_pattern",
+      "print_or_pattern",
+      "print",
+      "motif_type"
+    ],
+    "group_9": [
+      "closure_type",
+      "closure",
+      "placket_type"
+    ],
+    "group_10": [
+      "pockets",
+      "pocket_details",
+      "pocket_type",
+      "pocket_detailing",
+      "side_details",
+      "pocket",
+      "pocket_presence"
+    ],
+    "group_11": [
+      "weight",
+      "fabric_weight"
+    ],
+    "group_12": [
+      "fabric_finish",
+      "texture"
+    ],
+    "group_13": [
+      "hem_details",
+      "hem_style"
+    ],
+    "group_14": [
+      "color_scheme",
+      "color_palette",
+      "color_variation",
+      "print_colors",
+      "color_type"
+    ],
+    "group_15": [
+      "seam_details",
+      "side_seam_details",
+      "seams",
+      "seam_placement"
+    ],
+    "group_16": [
+      "cuff_style",
+      "cuff_detail",
+      "cuff_details",
+      "cuff_type",
+      "sleeve_details",
+      "cuff_detailing",
+      "\u8896\u53e3_style"
+    ],
+    "group_17": [
+      "yoke_design",
+      "yoke_detail",
+      "yoke_details",
+      "yoke_detailing",
+      "yoke_style"
+    ],
+    "group_18": [
+      "occasion"
+    ],
+    "group_19": [
+      "sleeve_trim",
+      "trim_details"
+    ],
+    "group_20": [
+      "side_slit"
+    ],
+    "group_21": [
+      "button_details"
+    ],
+    "group_22": [
+      "undertone",
+      "color_tone"
+    ],
+    "group_23": [
+      "accent_details"
+    ],
+    "group_24": [
+      "accent_color",
+      "embroidery_color"
+    ],
+    "group_25": [
+      "embellishment_location"
+    ],
+    "group_26": [
+      "sizing"
+    ],
+    "group_27": [
+      "season"
+    ],
+    "group_28": [
+      "lining_color"
+    ],
+    "group_29": [
+      "lining"
+    ],
+    "group_30": [
+      "neckline_details"
+    ]
+  },
+  "Suits": {
+    "group_1": [
+      "fabric_type",
+      "fabric_texture",
+      "fabric"
+    ],
+    "group_2": [
+      "neckline_type",
+      "neckline"
+    ],
+    "group_3": [
+      "sleeve_length",
+      "sleeve_type",
+      "sleeve_style"
+    ],
+    "group_4": [
+      "silhouette"
+    ],
+    "group_5": [
+      "embroidery_details",
+      "embellishments",
+      "embroidery_type",
+      "embroidery"
+    ],
+    "group_6": [
+      "dupatta_pattern",
+      "pattern",
+      "dupatta_detailing",
+      "print_type"
+    ],
+    "group_7": [
+      "trousers_waistband_type",
+      "waistband_type",
+      "waistband"
+    ],
+    "group_8": [
+      "trousers_pockets",
+      "pocket_type"
+    ],
+    "group_9": [
+      "dupatta_border",
+      "dupatta_style"
+    ],
+    "group_10": [
+      "color_scheme",
+      "color_palette"
+    ],
+    "group_11": [
+      "fabric_finish",
+      "texture"
+    ],
+    "group_12": [
+      "occasion_suitability",
+      "occasion"
+    ],
+    "group_13": [
+      "dupatta_drape",
+      "dupatta_shape"
+    ],
+    "group_14": [
+      "length"
+    ],
+    "group_15": [
+      "closure_type",
+      "closure"
+    ],
+    "group_16": [
+      "pant_style",
+      "trouser_style"
+    ],
+    "group_17": [
+      "hem_finish"
+    ],
+    "group_18": [
+      "construction_details",
+      "seams"
+    ],
+    "group_19": [
+      "yoke_style"
+    ],
+    "group_20": [
+      "embroidery_color"
+    ],
+    "group_21": [
+      "dupatta_length"
+    ],
+    "group_22": [
+      "fabric_weight"
+    ],
+    "group_23": [
+      "tassels"
+    ],
+    "group_24": [
+      "trim"
+    ]
+  },
+  "Plus Size Short Kurtis": {
+    "group_1": [
+      "fabric_type"
+    ],
+    "group_2": [
+      "fabric_finish"
+    ],
+    "group_3": [
+      "neckline_type"
+    ],
+    "group_4": [
+      "sleeve_length"
+    ],
+    "group_5": [
+      "sleeve_style"
+    ],
+    "group_6": [
+      "silhouette"
+    ],
+    "group_7": [
+      "hem_length"
+    ],
+    "group_8": [
+      "closure_type"
+    ],
+    "group_9": [
+      "print_type"
+    ],
+    "group_10": [
+      "color_scheme"
+    ],
+    "group_11": [
+      "weight"
+    ],
+    "group_12": [
+      "suitable_occasions"
+    ]
+  },
+  "Short Kurtis": {
+    "group_1": [
+      "neckline_type",
+      "collar_type",
+      "collar_style",
+      "neckline_style",
+      "neckline"
+    ],
+    "group_2": [
+      "sleeve_length",
+      "sleeve_type",
+      "cuff_style",
+      "sleeve_detail"
+    ],
+    "group_3": [
+      "sleeve_style",
+      "cuff_detail",
+      "sleeve_details",
+      "sleeve_detailing"
+    ],
+    "group_4": [
+      "silhouette",
+      "fit",
+      "silhouette_type"
+    ],
+    "group_5": [
+      "fabric_type",
+      "fabric_blend",
+      "fabric"
+    ],
+    "group_6": [
+      "fabric_texture",
+      "fabric_finish",
+      "texture"
+    ],
+    "group_7": [
+      "embellishments",
+      "pattern_type",
+      "print_design",
+      "embroidery_type",
+      "yoke_design"
+    ],
+    "group_8": [
+      "closure_type",
+      "closure"
+    ],
+    "group_9": [
+      "hem_style",
+      "hem_detail",
+      "hemline",
+      "hem_type",
+      "hem_details"
+    ],
+    "group_10": [
+      "length",
+      "hem_length"
+    ],
+    "group_11": [
+      "color",
+      "color_scheme",
+      "base_color"
+    ],
+    "group_12": [
+      "pattern",
+      "print_type",
+      "print_details"
+    ],
+    "group_13": [
+      "seams",
+      "construction_details"
+    ],
+    "group_14": [
+      "yoke_detail"
+    ],
+    "group_15": [
+      "fabric_weight"
+    ],
+    "group_16": [
+      "pockets"
+    ],
+    "group_17": [
+      "strap_detail",
+      "strap_type"
+    ],
+    "group_18": [
+      "occasion",
+      "style"
+    ],
+    "group_19": [
+      "collar_detailing"
+    ]
+  },
+  "Bottoms": {
+    "group_1": [
+      "color"
+    ],
+    "group_2": [
+      "fabric",
+      "fabric_texture",
+      "fabric_type"
+    ],
+    "group_3": [
+      "fit",
+      "silhouette",
+      "style",
+      "leg_silhouette",
+      "leg_shape"
+    ],
+    "group_4": [
+      "closure",
+      "waistband_style",
+      "waistband_type",
+      "closure_type"
+    ],
+    "group_5": [
+      "pocket_count",
+      "pocket_configuration"
+    ],
+    "group_6": [
+      "pocket_placement",
+      "pocket_type",
+      "pocket_design"
+    ],
+    "group_7": [
+      "hem_finish",
+      "hem_style",
+      "hem_detail"
+    ],
+    "group_8": [
+      "fabric_weight"
+    ],
+    "group_9": [
+      "length",
+      "pant_length",
+      "leg_length"
+    ],
+    "group_10": [
+      "leg_style",
+      "cuff_type",
+      "leg_taper"
+    ],
+    "group_11": [
+      "fabric_finish",
+      "texture"
+    ],
+    "group_12": [
+      "design_elements",
+      "embellishments",
+      "decorative_elements"
+    ],
+    "group_13": [
+      "rise_style",
+      "waist_style",
+      "waistline_position",
+      "waist_height"
+    ],
+    "group_14": [
+      "pattern",
+      "pattern_type"
+    ],
+    "group_15": [
+      "ankle_circumference"
+    ],
+    "group_16": [
+      "pattern_description"
+    ],
+    "group_17": [
+      "waistband_description"
+    ],
+    "group_18": [
+      "pockets"
+    ],
+    "group_19": [
+      "color_undertones"
+    ],
+    "group_20": [
+      "occasion"
+    ],
+    "group_21": [
+      "style_description"
+    ],
+    "group_22": [
+      "construction_details"
+    ]
+  },
+  "Plus Size Kurtis": {
+    "group_1": [
+      "fabric_type"
+    ],
+    "group_2": [
+      "collar_type",
+      "neckline_style",
+      "neckline_type"
+    ],
+    "group_3": [
+      "sleeve_length",
+      "sleeve_type"
+    ],
+    "group_4": [
+      "sleeve_style",
+      "sleeve_detailing",
+      "sleeve_detail"
+    ],
+    "group_5": [
+      "silhouette",
+      "fit_type",
+      "silhouette_type",
+      "fit"
+    ],
+    "group_6": [
+      "closure_type"
+    ],
+    "group_7": [
+      "print_type",
+      "print_design",
+      "print_pattern",
+      "fabric_pattern",
+      "pattern"
+    ],
+    "group_8": [
+      "hem_length",
+      "hem_style",
+      "length",
+      "hemline_type",
+      "garment_length"
+    ],
+    "group_9": [
+      "fabric_finish",
+      "fabric_texture",
+      "texture"
+    ],
+    "group_10": [
+      "embellishments",
+      "embroidery_details",
+      "embroidery_type"
+    ],
+    "group_11": [
+      "waist_detail"
+    ],
+    "group_12": [
+      "color_scheme",
+      "color_palette"
+    ],
+    "group_13": [
+      "seam_details"
+    ],
+    "group_14": [
+      "hem_finish"
+    ],
+    "group_15": [
+      "fabric_weight",
+      "weight"
+    ],
+    "group_16": [
+      "embroidery_location",
+      "yoke_detail"
+    ],
+    "group_17": [
+      "fabric_color"
+    ],
+    "group_18": [
+      "occasion"
+    ],
+    "group_19": [
+      "strap_type"
+    ]
+  },
+  "Kurtis": {
+    "group_1": [
+      "collar_type",
+      "neckline_type"
+    ],
+    "group_2": [
+      "sleeve_length"
+    ],
+    "group_3": [
+      "sleeve_style",
+      "cuff_style"
+    ],
+    "group_4": [
+      "fabric_type"
+    ],
+    "group_5": [
+      "fabric_texture",
+      "fabric_finish"
+    ],
+    "group_6": [
+      "silhouette"
+    ],
+    "group_7": [
+      "hem_length",
+      "hem_style"
+    ],
+    "group_8": [
+      "closure_type",
+      "placket_style"
+    ],
+    "group_9": [
+      "print_design"
+    ],
+    "group_10": [
+      "color_palette"
+    ],
+    "group_11": [
+      "embellishments"
+    ],
+    "group_12": [
+      "seam_details"
+    ],
+    "group_13": [
+      "color"
+    ]
+  },
+  "Plus Size Co-Ords": {
+    "group_1": [
+      "neckline"
+    ],
+    "group_2": [
+      "sleeve_length"
+    ],
+    "group_3": [
+      "sleeve_style"
+    ],
+    "group_4": [
+      "cuff_type"
+    ],
+    "group_5": [
+      "hem_style"
+    ],
+    "group_6": [
+      "print_type"
+    ],
+    "group_7": [
+      "fabric_type"
+    ],
+    "group_8": [
+      "fabric_weight"
+    ],
+    "group_9": [
+      "waistband_type"
+    ],
+    "group_10": [
+      "pocket_type"
+    ],
+    "group_11": [
+      "leg_style"
+    ],
+    "group_12": [
+      "fit_style"
+    ],
+    "group_13": [
+      "suitable_occasions"
+    ],
+    "group_14": [
+      "season"
+    ]
+  },
+  "Lehengas": {
+    "group_1": [
+      "fabric"
+    ],
+    "group_2": [
+      "color"
+    ],
+    "group_3": [
+      "num_pieces"
+    ],
+    "group_4": [
+      "neckline"
+    ],
+    "group_5": [
+      "sleeve_type"
+    ],
+    "group_6": [
+      "embellishment",
+      "embellishments"
+    ],
+    "group_7": [
+      "waistband_type",
+      "closure_type"
+    ],
+    "group_8": [
+      "skirt_design",
+      "silhouette"
+    ],
+    "group_9": [
+      "dupatta_style"
+    ],
+    "group_10": [
+      "texture"
+    ],
+    "group_11": [
+      "occasion"
+    ],
+    "group_12": [
+      "trim_details"
+    ],
+    "group_13": [
+      "length"
+    ],
+    "group_14": [
+      "pattern"
+    ],
+    "group_15": [
+      "accessories"
+    ]
+  },
+  "Shirts": {
+    "group_1": [
+      "fabric_type"
+    ],
+    "group_2": [
+      "fabric_texture",
+      "fabric_finish"
+    ],
+    "group_3": [
+      "color"
+    ],
+    "group_4": [
+      "sleeve_length"
+    ],
+    "group_5": [
+      "sleeve_style"
+    ],
+    "group_6": [
+      "collar_style"
+    ],
+    "group_7": [
+      "closure_type"
+    ],
+    "group_8": [
+      "button_style"
+    ],
+    "group_9": [
+      "silhouette"
+    ],
+    "group_10": [
+      "length"
+    ],
+    "group_11": [
+      "use_cases"
+    ],
+    "group_12": [
+      "design_features"
+    ]
+  },
+  "Unknown": {
+    "group_1": [
+      "background_color"
+    ],
+    "group_2": [
+      "accent_colors",
+      "typography_colors"
+    ],
+    "group_3": [
+      "shape"
+    ],
+    "group_4": [
+      "branding"
+    ],
+    "group_5": [
+      "design_elements"
+    ]
+  }
+}
