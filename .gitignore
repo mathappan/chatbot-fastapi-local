@@ -10,6 +10,7 @@ logs/*.log
 
 # Development/test data
 previous_data_files/
+data/
 
 # Environment files
 .env
