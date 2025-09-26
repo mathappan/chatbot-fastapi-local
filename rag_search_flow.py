@@ -25,8 +25,8 @@ from redis_filter_utils import build_combined_filter
 from product_validator import get_product_validator
 import json
 
-# Load environment variables once
-_ = load_dotenv(find_dotenv('.env.txt'))
+# Load environment variables once  
+_ = load_dotenv()  # Load from .env file or environment variables
 
 # Initialize clients as module-level singletons
 VOYAGE_API_KEY = os.environ['VOYAGER_API_KEY']

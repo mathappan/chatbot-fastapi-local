@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv, find_dotenv
 
 # Load environment variables
-load_dotenv(find_dotenv('.env.txt'))
+load_dotenv()  # Load from .env file or environment variables
 
 # API Keys
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")

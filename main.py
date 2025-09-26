@@ -22,7 +22,7 @@ from response_models import (
 )
 
 # --- Environment and Configuration ---
-load_dotenv(find_dotenv('.env.txt'))
+load_dotenv()  # Load from .env file or environment variables
 
 # --- Groq Client Configuration ---
 groq_client = AsyncGroq(api_key=os.getenv("GROQ_API_KEY"))

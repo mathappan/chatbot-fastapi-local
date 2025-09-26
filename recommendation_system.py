@@ -35,7 +35,7 @@ from pinecone import Pinecone
 
 import os
 from dotenv import load_dotenv, find_dotenv
-_ = load_dotenv(find_dotenv('.env.txt')) # read local .env file
+_ = load_dotenv()  # Load from .env file or environment variables
 
 # DeepSeek API Configuration
 DEEPSEEK_API_KEY = os.environ.get('DEEPSEEK_API_KEY')
