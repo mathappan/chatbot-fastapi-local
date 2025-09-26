@@ -13,14 +13,7 @@ from typing import Dict, List
 from clients import groq_client
 from prompts import UNIFIED_PRODUCT_CATEGORY_EXTRACTION_PROMPT
 
-def get_global_metadata():
-    """Get global metadata variables from main module."""
-    try:
-        import main
-        return main.group_descriptions, main.reversed_attribute_mappings, main.grouped_values
-    except (ImportError, AttributeError):
-        # Fallback to empty dicts if not available
-        return {}, {}, {}
+from global_metadata import get_global_metadata
 
 
 class UnifiedProductCategoryExtractor:

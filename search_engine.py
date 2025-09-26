@@ -5,14 +5,7 @@ from collections import defaultdict, OrderedDict
 
 from clients import groq_client, voyageai_client
 
-def get_global_metadata():
-    """Get global metadata variables from main module."""
-    try:
-        import main
-        return main.group_descriptions, main.reversed_attribute_mappings, main.grouped_values
-    except (ImportError, AttributeError):
-        # Fallback to empty dicts if not available
-        return {}, {}, {}
+from global_metadata import get_global_metadata
 
 from prompts import (
     HIGH_LEVEL_USER_QUERY_EXTRACTION_PROMPT,
