@@ -31,7 +31,6 @@ class ProductSearchResult(BaseModel):
     image_url: str
     product_url: str
     max_price: float
-    store_name: str
     relevance_score: Optional[float] = None
     llm_filter_reason: Optional[str] = None
 

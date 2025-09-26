@@ -68,7 +68,7 @@ if not PINECONE_CONFIG["api_key"]:
 # typical occasions, and common preferences.
 
 STORE_DETAILS = {
-    "store_name": "Libas",
+    "store_name": "Fashion Store",
     "store_type": "Women's Ethnic & Fusion Wear",
     "brand_philosophy": "Stories over Seasons, personal style over trends, comfort over appearance",
     "target_demographic": "New age Indian women who are free-spirited, independent, and style-aware",
@@ -249,7 +249,7 @@ You are an expert at generating concise Google-style search queries from custome
 Below are {len(user_messages)} customer messages. For each message, generate a concise, optimized search query that would help find the products the customer is looking for.
 
 Customer Gender: {gender}
-Store Type: Women's Ethnic & Fusion Wear (Libas)
+Store Type: Women's Ethnic & Fusion Wear (Fashion Store)
 
 INSTRUCTIONS:
 1. Generate exactly one search query per customer message
@@ -469,9 +469,9 @@ async def process_messages_through_full_pipeline(messages, message_type="basic")
                 attribute_results_by_product_type
             )
             
-            # Step 2d: Run shortlists (following master_search.py pattern)
+            # Step 2d: Run shortlists (Redis-optimized, following master_search.py pattern)
             from product_matcher import product_matcher
-            shortlist_results = await product_matcher.run_all_shortlists(
+            shortlist_results = await product_matcher.redis_run_all_shortlists(
                 mapped_attributes_and_values,
                 product_attributes_for_search,
                 10
@@ -582,10 +582,10 @@ async def continue_pipeline_to_rerank(processed_results, result_type="basic"):
         print(f"   Processing {result_type} result {i}: {result['original_message']}")
         
         try:
-            # Step 1: Run shortlists (following master_search.py pattern)
-            print(f"      → Step 1: Running shortlists...")
+            # Step 1: Run shortlists (Redis-optimized, following master_search.py pattern)
+            print(f"      → Step 1: Running Redis-optimized shortlists...")
             from product_matcher import product_matcher
-            shortlist_results = await product_matcher.run_all_shortlists(
+            shortlist_results = await product_matcher.redis_run_all_shortlists(
                 result['mapped_attributes_and_values'],
                 result['product_attributes_for_search'],
                 10

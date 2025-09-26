@@ -8,9 +8,6 @@ load_dotenv(find_dotenv('.env.txt'))
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 VOYAGE_API_KEY = os.environ.get("VOYAGER_API_KEY")
 
-# Store Configuration
-STORE_URL = "https://libas.in/"
-STORE_NAME = "libas"
 
 # Redis Configuration
 REDIS_HOST = os.getenv("REDIS_HOST", "localhost")

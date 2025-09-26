@@ -1,10 +1,11 @@
 import json
-from typing import Dict
+from typing import Dict, List
 from search_engine import search_engine
 from product_matcher import product_matcher
-from product_pitch import product_pitch_generator
-from data_loader import data_loader
 from logger_config import logger, log_error, error_handler, log_search_query
+from redis.commands.search.query import Query
+from product_validator import get_product_validator
+import asyncio
 
 class MasterSearchFunction:
     """Orchestrates the complete product search pipeline."""
@@ -12,11 +13,13 @@ class MasterSearchFunction:
     def __init__(self):
         self.search_engine = search_engine
         self.product_matcher = product_matcher
-        self.pitch_generator = product_pitch_generator
     
-    def _filter_products_by_size_and_price(self, sizes: list = None, user_min_budget: float = None, user_max_budget: float = None) -> list:
+    # Product validation methods moved to shared product_validator.py module
+    # to eliminate code duplication across master_search.py and rag_search_flow.py
+    
+    async def _get_filtered_product_ids_from_redis(self, sizes: list = None, user_min_budget: float = None, user_max_budget: float = None) -> list:
         """
-        Filter products based on size_options and prices from the enhanced JSON descriptions.
+        Get product IDs that match size and price criteria from Redis.
         
         Args:
             sizes: List of sizes to filter by (e.g., ['s', 'm', 'l'])
@@ -24,48 +27,50 @@ class MasterSearchFunction:
             user_max_budget: Maximum price range
             
         Returns:
-            List of product IDs that match the size and price criteria
+            List of product IDs that match the criteria
         """
-        matching_products = []
-        
-        for product_id, product_data in data_loader.standardised_jsons.items():
-            # Check if product matches size criteria
-            size_match = True
-            if sizes:
-                product_sizes = product_data.get('size_options', [])
-                if not product_sizes:
-                    size_match = False
-                else:
-                    # Check if any of the user's preferred sizes are available
-                    size_match = any(size.lower() in [ps.lower() for ps in product_sizes] for size in sizes)
+        try:
+            # Import Redis utilities
+            from redis_filter_utils import build_combined_filter
+            from redis_client_manager import get_redis_client
+            from redis.commands.search.query import Query
             
-            # Check if product matches price criteria
-            price_match = True
-            if user_min_budget is not None or user_max_budget is not None:
-                product_prices = product_data.get('prices', [])
-                if not product_prices:
-                    price_match = False
-                else:
-                    # Check if any price falls within the user's budget range
-                    min_price = user_min_budget if user_min_budget is not None else 0
-                    max_price = user_max_budget if user_max_budget is not None else float('inf')
-                    
-                    price_match = any(min_price <= price <= max_price for price in product_prices)
+            # Use centralized Redis client
+            redis_client = get_redis_client()
             
-            # Include product if it matches both size and price criteria
-            if size_match and price_match:
-                matching_products.append(product_id)
-        
-        return matching_products
+            # Build filter using existing utility
+            combined_filter = build_combined_filter(
+                allowed_product_types=None,  # No product type restriction
+                sizes=sizes,
+                user_min_budget=user_min_budget,
+                user_max_budget=user_max_budget,
+                excluded_ids=None
+            )
+            
+            # If no specific filters, return empty list (let Redis shortlisting handle everything)
+            if combined_filter == "*":
+                return []
+            
+            # Query Redis for matching products
+            query = Query(combined_filter).return_fields("internal_id")
+            results = redis_client.ft("idx:product_metadata").search(query)
+            
+            matching_products = [doc.internal_id for doc in results.docs if hasattr(doc, 'internal_id')]
+            print(f"🔍 Redis filtering found {len(matching_products)} matching products")
+            return matching_products
+            
+        except Exception as e:
+            print(f"⚠️ Error filtering products with Redis: {e}")
+            return []  # Return empty list, let shortlisting handle everything
     
     @error_handler("Product Search")
-    async def search_products(self, user_message: str, gender: str = "female", conversation_id: str = None, conversation_redis_client=None, allowed_product_types=None, sizes: list = None, user_min_budget: float = None, user_max_budget: float = None, max_results: int = 10) -> Dict:
+    async def search_products(self, user_message: str, genders = ["female"], conversation_id: str = None, conversation_redis_client=None, allowed_product_types=None, sizes: list = None, user_min_budget: float = None, user_max_budget: float = None, max_results: int = 10) -> Dict:
         """
         Master search function that handles the complete product search pipeline with size and price filtering.
         
         Args:
             user_message (str): User's search query
-            gender (str): User's gender preference
+            genders: List of user's gender preferences
             conversation_id (str): Conversation ID to get excluded products
             conversation_redis_client: Redis client for conversation data
             allowed_product_types: List of product types to filter by
@@ -74,7 +79,7 @@ class MasterSearchFunction:
             user_max_budget: Maximum price range
             
         Returns:
-            Dict: Product recommendations with pitches
+            Dict: Product recommendations
         """
         try:
             logger.info(f"Starting product search for query: {user_message[:100]}")
@@ -82,7 +87,7 @@ class MasterSearchFunction:
             # Step 1: Get search attributes from user query
             logger.info("🔍 Step 1: Extracting search attributes...")
             product_attributes_for_search = await self.search_engine.get_search_attributes(
-                user_message, gender, allowed_product_types
+                user_message, genders, allowed_product_types
             )
             logger.info(f"Extracted attributes: {list(product_attributes_for_search.keys())}")
             
@@ -113,105 +118,134 @@ class MasterSearchFunction:
                 if excluded_product_ids:
                     print(f"🔍 Found {len(excluded_product_ids)} existing product IDs to exclude from filter search")
 
-            # Step 3.7: Apply size and price filtering before shortlisting
+            # Step 3.7: Size and price filtering is now handled directly by Redis shortlisting
+            # No need for separate pre-filtering since redis_run_all_shortlists handles all filtering
             if sizes or user_min_budget or user_max_budget:
-                print("🔍 Step 3.7: Applying size and price pre-filtering...")
-                size_price_filtered_products = self._filter_products_by_size_and_price(
-                    sizes, user_min_budget, user_max_budget
-                )
-                print(f"🔍 Size/price filtering: {len(size_price_filtered_products)} products match criteria")
-                
-                # Add filtered products to exclusion list (exclude products that don't match)
-                all_product_ids = set(data_loader.standardised_jsons.keys())
-                size_price_excluded = list(all_product_ids - set(size_price_filtered_products))
-                excluded_product_ids.extend(size_price_excluded)
-                print(f"🔍 Total exclusions after size/price filtering: {len(excluded_product_ids)}")
+                print(f"🔍 Step 3.7: Size/price filtering will be applied in Redis shortlisting (sizes: {sizes}, budget: {user_min_budget}-{user_max_budget})")
 
-            # Step 4: Shortlist products
-            print("🔍 Step 4: Shortlisting products...")
-            shortlist_results = await self.product_matcher.run_all_shortlists(
+            # Step 4: Shortlist products (Redis-optimized)
+            # Handle both single gender (string) and multiple genders (list) for backward compatibility  
+            if isinstance(genders, str):
+                genders = [genders]
+            elif not isinstance(genders, list) or not genders:
+                genders = ["female"]  # fallback
+            
+            print(f"🔍 Step 4: Shortlisting products with Redis (genders: {genders})...")
+            print("mapped_attributes_and_values", json.dumps(mapped_attributes_and_values, indent=4))
+            print("product_attributes_for_search", json.dumps(product_attributes_for_search, indent=4))
+            shortlist_results = await self.product_matcher.redis_run_all_shortlists(
                 mapped_attributes_and_values,
                 product_attributes_for_search,
                 10,
-                excluded_product_ids
+                excluded_product_ids,
+                genders
             )
             
             # Step 5: Merge and sort shortlists
             print("🔍 Step 5: Merging and sorting results...")
             sorted_shortlist_results = self.product_matcher.merge_and_sort_shortlists(shortlist_results)
-            
+            print("sorted_shortlist_results - ", sorted_shortlist_results)
             # Step 6: Rerank using semantic similarity
             print("🔍 Step 6: Reranking with semantic similarity...")
             reranked_shortlisted_results = await self.product_matcher.rerank_shortlisted_products(
                 user_message, sorted_shortlist_results
             )
+            print('reranked_shortlisted_results - ', json.dumps(reranked_shortlisted_results, indent=4))
+            # Step 7: Limit results to max_results
+            print(f"🔍 Step 7: Limiting results to {max_results}...")
+            limited_results = dict(list(reranked_shortlisted_results.items())[:max_results])
+            print(f"🔍 Final results: {len(limited_results)} products")
             
-            # Step 7: Generate product pitches
-            print("🔍 Step 7: Generating product pitches...")
-            pitches = await self.pitch_generator.generate_top_ten_pitches(
-                user_message, reranked_shortlisted_results
-            )
-            
-            # Step 8: Add product images to pitches
-            for product_id, pitch in pitches.items():
-                if product_id in data_loader.product_image_map:
-                    pitch['image_url'] = data_loader.product_image_map[product_id]
-            
-            # Step 9: Prioritize and limit results (exact matches first, then non-exact, limited to max_results)
-            if pitches:
-                exact_matches = {}
-                non_exact_matches = {}
+            # Step 8: Fetch metadata for unified format (same as RAG search)
+            print(f"🔍 Step 8: Fetching product metadata for unified format...")
+            unified_search_results = []
+            if limited_results:
+                from redis_client_manager import get_redis_client
+                redis_client = get_redis_client()
                 
-                for product_id, pitch in pitches.items():
-                    match_value = str(pitch.get('match', False)).lower()
-                    exact_match_value = str(pitch.get('exact_match', False)).lower()
+                product_ids = list(limited_results.keys())
+                query_string = " | ".join([f"@internal_id:{id_}" for id_ in product_ids])
+                metadata_query = (
+                    Query(query_string)
+                    .return_fields("internal_id", "image_url", "product_url", "title", "max_price", "body_text")
+                )
+                
+                try:
+                    metadata_results = redis_client.ft("idx:product_metadata").search(metadata_query)
+                    metadata_map = {}
+                    for doc in metadata_results.docs:
+                        metadata_map[doc.internal_id] = {
+                            'title': getattr(doc, 'title', f"Product {doc.internal_id}"),
+                            'image_url': getattr(doc, 'image_url', ''),
+                            'product_url': getattr(doc, 'product_url', f"/product/{doc.internal_id}"),
+                            'max_price': getattr(doc, 'max_price', 0),
+                            'body_text': getattr(doc, 'body_text', '')
+                        }
                     
-                    if match_value == 'true' or exact_match_value == 'true':
-                        exact_matches[product_id] = pitch
-                    else:
-                        non_exact_matches[product_id] = pitch
-                
-                # Combine in priority order: exact matches first (limited to max_results), then non-exact
-                final_pitches = {}
-                
-                # Add exact matches first, but respect max_results limit
-                added_count = 0
-                for product_id, pitch in exact_matches.items():
-                    if added_count < max_results:
-                        final_pitches[product_id] = pitch
-                        added_count += 1
-                
-                # Add non-exact matches if there are remaining slots
-                remaining_slots = max_results - len(final_pitches)
-                if remaining_slots > 0:
-                    for product_id, pitch in non_exact_matches.items():
-                        if len(final_pitches) < max_results:
-                            final_pitches[product_id] = pitch
-                
-                pitches = final_pitches
-                exact_count = min(len(exact_matches), max_results)
-                non_exact_count = len(pitches) - exact_count
-                print(f"🔍 Final results: {exact_count} exact matches + {non_exact_count} non-exact = {len(pitches)} total (limited to {max_results})")
+                    # Create unified format matching RAG search
+                    for product_id, relevance_score in limited_results.items():
+                        metadata = metadata_map.get(product_id, {})
+                        unified_search_results.append({
+                            'product_id': product_id,
+                            'relevance_score': relevance_score,
+                            'text_description': metadata.get('body_text', ''),
+                            'title': metadata.get('title', f"Product {product_id}"),
+                            'image_url': metadata.get('image_url', ''),
+                            'product_url': metadata.get('product_url', f"/product/{product_id}"),
+                            'max_price': metadata.get('max_price', 0),
+                            'body_text': metadata.get('body_text', '')
+                        })
+                    
+                    print(f"✅ Created unified format with {len(unified_search_results)} products with metadata")
+                    
+                    # Step 9: Validate products against customer intent (same as RAG search)
+                    print(f"🔍 Step 9: Validating {len(unified_search_results)} products against customer intent...")
+                    validator = get_product_validator()
+                    validated_search_results = await validator.validate_product_matches(user_message, unified_search_results)
+                    unified_search_results = validated_search_results
+                    print(f"✅ After validation: {len(unified_search_results)} products match customer intent")
+                    
+                except Exception as e:
+                    print(f"⚠️ Error fetching metadata: {e}, using limited format")
+                    # Fallback to basic format without metadata
+                    unified_search_results = [
+                        {
+                            'product_id': product_id,
+                            'relevance_score': relevance_score,
+                            'text_description': '',
+                            'title': f"Product {product_id}",
+                            'image_url': '',
+                            'product_url': f"/product/{product_id}",
+                            'max_price': 0,
+                            'body_text': ''
+                        }
+                        for product_id, relevance_score in limited_results.items()
+                    ]
+                    
+                    # Step 9: Validate products against customer intent (fallback case)
+                    print(f"🔍 Step 9: Validating {len(unified_search_results)} products against customer intent (fallback)...")
+                    validator = get_product_validator()
+                    validated_search_results = await validator.validate_product_matches(user_message, unified_search_results)
+                    unified_search_results = validated_search_results
+                    print(f"✅ After validation: {len(unified_search_results)} products match customer intent (fallback)")
             
             # Log successful search
-            log_search_query("system", user_message, len(pitches), True)
-            logger.info(f"Product search completed successfully. Found {len(pitches)} products.")
+            log_search_query("system", user_message, len(unified_search_results), True)
+            logger.info(f"Product search completed successfully. Found {len(unified_search_results)} products.")
             
             return {
                 "status": "success",
                 "query": user_message,
-                "products_found": len(pitches),
-                "product_recommendations": pitches,
+                "products_found": len(unified_search_results),
+                "product_recommendations": limited_results,
                 "ranked_products": reranked_shortlisted_results,
-                # "formatted_response": self.pitch_generator.format_product_recommendations(
-                #     pitches, reranked_shortlisted_results
-                "formatted_response": {"pitches": pitches}
+                "formatted_response": {"search_results": unified_search_results}
             }
             
         except Exception as e:
             # Log failed search
             log_search_query("system", user_message, 0, False)
-            log_error(e, "Master search function error", {"query": user_message, "gender": gender})
+            log_error(e, "Master search function error", {"query": user_message, "genders": genders})
             return {
                 "status": "error",
                 "query": user_message,

@@ -16,15 +16,5 @@ voyageai.api_key = VOYAGE_API_KEY
 voyageai_client = voyageai.AsyncClient()
 
 # Initialize Redis client
-redis_client = redis.Redis(
-    host='redis-19985.c212.ap-south-1-1.ec2.redns.redis-cloud.com',
-    port=19985,
-    decode_responses=True,
-    username="default",
-    password="9sctWbao6E8VydXA2KlBTp1CTcOjAlko",
-    socket_connect_timeout=5,
-    socket_timeout=5,
-    socket_keepalive=True,
-    socket_keepalive_options={},
-    max_connections=10,
-)
+from redis_client_manager import get_async_redis_client
+redis_client = get_async_redis_client()

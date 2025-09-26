@@ -4,8 +4,16 @@ from typing import Dict, List, Any, Tuple
 from collections import defaultdict, OrderedDict
 
 from clients import groq_client, voyageai_client
-from data_loader import data_loader
-from unified_product_category import unified_product_category_extractor
+
+def get_global_metadata():
+    """Get global metadata variables from main module."""
+    try:
+        import main
+        return main.group_descriptions, main.reversed_attribute_mappings, main.grouped_values
+    except (ImportError, AttributeError):
+        # Fallback to empty dicts if not available
+        return {}, {}, {}
+
 from prompts import (
     HIGH_LEVEL_USER_QUERY_EXTRACTION_PROMPT,
     SEARCH_ATTRIBUTE_SYSTEM_PROMPT,
@@ -17,14 +25,9 @@ class SearchEngine:
     """Main search engine for product discovery."""
     
     def __init__(self):
-        self.data = data_loader
-        
-        # Get available product categories from group descriptions
-        self.product_categories = list(self.data.group_descriptions.keys())
+        # Product categories will be loaded dynamically from Redis or global variables
+        self.product_categories = []
     
-    async def get_product_category(self, user_query: str, gender: str) -> Dict:
-        """Extract product categories from user query using unified RAG methodology."""
-        return await unified_product_category_extractor.get_product_category(user_query, gender)
     
     async def get_attributes_for_search(self, user_query: str, garment: str, gender: str) -> Dict:
         """Get search attributes for a specific garment type with retry logic."""
@@ -51,8 +54,19 @@ class SearchEngine:
                 return {garment: json_result}
                 
             except Exception as e:
+                from logger_config import log_detailed_error
                 last_error = e
-                print(f"Attempt {attempt + 1} failed for garment '{garment}': {str(e)}")
+                log_detailed_error(
+                    e,
+                    context=f"get_attributes_for_search.attempt_{attempt + 1}",
+                    local_vars={
+                        "garment": garment,
+                        "gender": gender,
+                        "user_query": user_query,
+                        "attempt": attempt + 1,
+                        "max_retries": max_retries
+                    }
+                )
                 if attempt < max_retries - 1:
                     continue
         
@@ -60,16 +74,14 @@ class SearchEngine:
         print(f"All {max_retries} attempts failed for garment '{garment}'. Using fallback response.")
         return {garment: {"attributes": []}}
     
-    async def get_search_attributes(self, user_query: str, gender: str, allowed_product_types=None) -> Dict:
+    async def get_search_attributes(self, user_query: str, genders, allowed_product_types) -> Dict:
         """Get search attributes for all identified garment types."""
-        if allowed_product_types is None:
-            user_query_json_garment = await self.get_product_category(user_query, gender)
-            garments = user_query_json_garment["garment_type"]
-        else:
-            garments = allowed_product_types
-        print(f"Identified garments: {garments}")
+        garments = allowed_product_types
+        print(f"Using garments: {garments}")
         
-        tasks = [self.get_attributes_for_search(user_query, garment, gender) for garment in garments]
+        # Use first gender for attribute extraction (attributes are generally not gender-specific)
+        primary_gender = genders[0] if isinstance(genders, list) and genders else genders if isinstance(genders, str) else "female"
+        tasks = [self.get_attributes_for_search(user_query, garment, primary_gender) for garment in garments]
         results = await asyncio.gather(*tasks)
         
         # Merge individual dicts into one
@@ -93,8 +105,10 @@ class SearchEngine:
     
     async def rerank_all_for_product_type(self, product_type: str, attributes_for_search: Dict) -> Tuple:
         """Rerank all attributes for a product type."""
-        documents = [v["group_description"] for v in self.data.group_descriptions[product_type].values()]
-        description_to_group = self.data.reversed_attribute_mappings[product_type]
+        group_descriptions, reversed_attribute_mappings, grouped_values = get_global_metadata()
+        
+        documents = [v["group_description"] for v in group_descriptions.get(product_type, {}).values()]
+        description_to_group = reversed_attribute_mappings.get(product_type, {})
         attribute_descriptions = [attr['attribute_description'] for attr in attributes_for_search['attributes']]
 
         tasks = [
@@ -153,8 +167,9 @@ class SearchEngine:
         reranked_by_product_type = {pt: result for pt, result in rerank_results}
 
         # Add attribute values for better context
+        group_descriptions, reversed_attribute_mappings, grouped_values = get_global_metadata()
         for product_type, attributes in reranked_by_product_type.items():
-            grouped_attr_values = self.data.grouped_values.get(product_type, {})
+            grouped_attr_values = grouped_values.get(product_type, {})
             for attribute_name, reranked_list in attributes.items():
                 for attr_entry in reranked_list:
                     attr_name = attr_entry["group_name"]
@@ -176,7 +191,7 @@ class SearchEngine:
         candidate_attributes: List[str],
         product_specific_attributes: Dict,
     ) -> Tuple[str, List[str]]:
-        """Match a single query value against canonical values."""
+        """Match a single query value against canonical values with validation and retry."""
         try:
             # Gather candidate values from product type's attributes
             candidate_options = set()
@@ -185,7 +200,7 @@ class SearchEngine:
                 candidate_options.update(values)
 
             if not candidate_options:
-                return query_value, []
+                return query_value, {"values": []}
             
             candidate_options = list(candidate_options)
 
@@ -199,31 +214,116 @@ class SearchEngine:
             ]
             
             if not top_matches:
-                return query_value, []
+                return query_value, {"values": []}
 
-            # Use LLM for precise filtering
+            # Use LLM for precise filtering with validation and retry
             gpt_input = {
                 "query_value": query_value,
                 "reranked_canonicals": [{"canonical_value": match} for match in top_matches]
             }
 
-            gpt_response = await groq_client.chat.completions.create(
-                model="llama-3.1-8b-instant",
-                messages=[
-                    {"role": "system", "content": VALUE_SYSTEM_PROMPT},
-                    {"role": "user", "content": json.dumps(gpt_input)},
-                ],
-                temperature=0.0,
-                response_format={"type": "json_object"},
-            )
+            max_retries = 3
+            last_response = None
             
-            content = gpt_response.choices[0].message.content
-            matched_values = json.loads(content)
-            return query_value, matched_values
+            # Store conversation history for retry attempts
+            messages = [
+                {"role": "system", "content": VALUE_SYSTEM_PROMPT},
+                {"role": "user", "content": json.dumps(gpt_input)}
+            ]
+
+            for attempt in range(max_retries):
+                try:
+                    gpt_response = await groq_client.chat.completions.create(
+                        model="llama-3.1-8b-instant",
+                        messages=messages,
+                        temperature=0.0,
+                        response_format={"type": "json_object"},
+                    )
+                    
+                    content = gpt_response.choices[0].message.content
+                    matched_values = json.loads(content)
+                    last_response = matched_values
+                    
+                    # Validate the response format
+                    if self._validate_value_mapping_response(matched_values):
+                        # Return the full matched_values dict which contains {"values": [...]}
+                        values_list = matched_values.get("values", [])
+                        print(f"✅ Valid value mapping for '{query_value}': {values_list}")
+                        return query_value, matched_values
+                    else:
+                        print(f"❌ Attempt {attempt + 1}: Invalid value mapping format for '{query_value}': {matched_values}")
+                        
+                        if attempt < max_retries - 1:
+                            # Add feedback for retry
+                            messages.append({
+                                "role": "assistant",
+                                "content": content
+                            })
+                            messages.append({
+                                "role": "user",
+                                "content": f"""Your response format is invalid. You must return a JSON object with a "values" key containing a list of strings.
+
+Example correct format:
+{{"values": ["string1", "string2"]}}
+
+Your response contained: {matched_values}
+
+Please provide a valid JSON response with only the "values" key containing a list of matching canonical values."""
+                            })
+                                
+                except json.JSONDecodeError as e:
+                    print(f"Attempt {attempt + 1}: JSON parsing error for value '{query_value}': {e}")
+                    if attempt < max_retries - 1:
+                        continue
+                except Exception as e:
+                    from logger_config import log_detailed_error
+                    log_detailed_error(
+                        e,
+                        context=f"process_single_value.attempt_{attempt + 1}",
+                        local_vars={
+                            "query_value": query_value,
+                            "product_type": product_type,
+                            "candidate_attributes": candidate_attributes,
+                            "attempt": attempt + 1,
+                            "max_retries": max_retries
+                        }
+                    )
+                    if attempt < max_retries - 1:
+                        continue
+            
+            
+            print(f"❌ All {max_retries} attempts failed for value '{query_value}', returning empty list")
+            return query_value, {"values": []}
 
         except Exception as e:
-            print(f"Error processing value '{query_value}' for product type '{product_type}': {e}")
-            return query_value, []
+            from logger_config import log_detailed_error
+            log_detailed_error(
+                e,
+                context="process_single_value.outer_exception",
+                local_vars={
+                    "query_value": query_value,
+                    "product_type": product_type,
+                    "candidate_attributes": candidate_attributes,
+                    "product_specific_attributes": str(product_specific_attributes)[:200]
+                }
+            )
+            return query_value, {"values": []}
+    
+    def _validate_value_mapping_response(self, response: dict) -> bool:
+        """Validate that the value mapping response has correct format."""
+        if not isinstance(response, dict):
+            return False
+        
+        if "values" not in response:
+            return False
+            
+        values = response["values"]
+        if not isinstance(values, list):
+            return False
+            
+        # Check that all values in the list are strings
+        return all(isinstance(v, str) for v in values)
+    
     
     async def map_search_values_to_catalog(
         self,
@@ -233,6 +333,9 @@ class SearchEngine:
         """Map search values to catalog values."""
         tasks = []
         context = []
+
+        # Get global metadata
+        group_descriptions, reversed_attribute_mappings, grouped_values = get_global_metadata()
 
         # Create tasks for each attribute lookup
         for product_type, config in product_attributes_for_search.items():
@@ -253,7 +356,7 @@ class SearchEngine:
                                 query_value=value,
                                 product_type=product_type,
                                 candidate_attributes=[mapped_attribute],
-                                product_specific_attributes=self.data.grouped_values[product_type],
+                                product_specific_attributes=grouped_values.get(product_type, {}),
                             )
                         )
                         context.append((product_type, description, value, mapped_attribute))

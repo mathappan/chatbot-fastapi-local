@@ -1213,3 +1213,463 @@ Traceback (most recent call last):
     raise ConnectionError(self._error_message(e))
 redis.exceptions.ConnectionError: Error 11001 connecting to redis-10533.c9.us-east-1-2.ec2.redns.redis-cloud.com:10533. getaddrinfo failed.
 
+2025-08-28 13:09:03,499 - chatbot - ERROR - main.py:639 - unified_chat_handler - Error in unified chat handler: name 'get_user_summary_from_redis' is not defined
+2025-08-28 13:09:09,928 - chatbot - ERROR - main.py:639 - unified_chat_handler - Error in unified chat handler: name 'get_user_summary_from_redis' is not defined
+2025-08-28 13:12:43,894 - chatbot - ERROR - main.py:639 - unified_chat_handler - Error in unified chat handler: name 'get_user_summary_from_redis' is not defined
+2025-08-28 13:24:05,223 - chatbot - ERROR - main.py:652 - unified_chat_handler - Error in unified chat handler: 'MinimalDataLoader' object has no attribute 'product_categories'
+2025-08-28 13:29:26,260 - chatbot - ERROR - main.py:652 - unified_chat_handler - Error in unified chat handler: 'MinimalDataLoader' object has no attribute 'product_categories'
+2025-08-28 13:29:51,020 - chatbot - ERROR - main.py:652 - unified_chat_handler - Error in unified chat handler: 'MinimalDataLoader' object has no attribute 'product_categories'
+2025-08-28 13:39:57,545 - chatbot - ERROR - main.py:652 - unified_chat_handler - Error in unified chat handler: 'MinimalDataLoader' object has no attribute 'sizes_by_product_type'
+2025-08-28 13:43:22,479 - chatbot - ERROR - main.py:652 - unified_chat_handler - Error in unified chat handler: 'Document' object has no attribute 'product_id'
+2025-08-28 17:39:02,014 - chatbot - ERROR - main.py:652 - unified_chat_handler - Error in unified chat handler: 'NoneType' object has no attribute '_add_writer'
+2025-09-03 20:53:11,498 - chatbot - ERROR - main.py:628 - unified_chat_handler - Error in unified chat handler: 'list' object has no attribute 'keys'
+2025-09-04 23:12:24,525 - chatbot - ERROR - main.py:677 - unified_chat_handler - Error in unified chat handler: name 'gender' is not defined
+2025-09-04 23:38:12,957 - chatbot - ERROR - main.py:648 - unified_chat_handler - Error in unified chat handler: name 'gender' is not defined
+2025-09-04 23:44:32,730 - chatbot - ERROR - main.py:669 - unified_chat_handler - Error in unified chat handler: name 'gender' is not defined
+2025-09-04 23:50:20,844 - chatbot - ERROR - main.py:669 - unified_chat_handler - Error in unified chat handler: name 'gender' is not defined
+2025-09-05 09:40:36,114 - chatbot - ERROR - logger_config.py:72 - log_error - ERROR in Master search function error: name 'gender' is not defined
+Additional Info: {'query': 'pink kurtas for women', 'genders': ['female']}
+Traceback:
+Traceback (most recent call last):
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\master_search.py", line 85, in search_products
+    user_message, gender, allowed_product_types
+                  ^^^^^^
+NameError: name 'gender' is not defined. Did you mean: 'genders'?
+
+2025-09-05 23:46:25,639 - chatbot - ERROR - main.py:582 - generate_sse_stream - Error in unified chat stream: cannot access local variable 'image_file' where it is not associated with a value
+2025-09-05 23:46:42,790 - chatbot - ERROR - main.py:582 - generate_sse_stream - Error in unified chat stream: cannot access local variable 'image_file' where it is not associated with a value
+2025-09-05 23:50:07,617 - chatbot - ERROR - main.py:582 - generate_sse_stream - Error in unified chat stream: cannot access local variable 'image_file' where it is not associated with a value
+2025-09-05 23:53:00,719 - chatbot - ERROR - main.py:592 - generate_sse_stream - Error in unified chat stream: cannot access local variable 'image_file' where it is not associated with a value
+2025-09-06 09:14:04,592 - chatbot - ERROR - main.py:593 - generate_sse_stream - Error in unified chat stream: cannot access local variable 'image_file' where it is not associated with a value
+2025-09-06 09:14:04,594 - chatbot - ERROR - main.py:594 - generate_sse_stream - Full traceback: Traceback (most recent call last):
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\main.py", line 333, in generate_sse_stream
+    if isinstance(image_file, str) and not image_file:
+                  ^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'image_file' where it is not associated with a value
+
+2025-09-06 22:38:29,280 - chatbot - ERROR - logger_config.py:104 - log_detailed_error - DETAILED ERROR in unified_chat_handler.generate_sse_stream: Error 11001 connecting to redis-19985.c212.ap-south-1-1.ec2.redns.redis-cloud.com:19985. getaddrinfo failed.
+Error Type: ConnectionError
+Local Variables at Error:
+  chat_uuid: 25d654f8-6645-45b2-a04b-c79506888ffa
+  user_query: Text input: find similar style dresses
+  intent: None
+  processing_time: 0.002900838851928711
+Full Traceback:
+Traceback (most recent call last):
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\redis\asyncio\connection.py", line 302, in connect_check_health
+    await self.retry.call_with_retry(
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\redis\asyncio\retry.py", line 71, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\redis\asyncio\connection.py", line 755, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\AppData\Local\Programs\Python\Python312\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 1078, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 1454, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 899, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\AppData\Local\Programs\Python\Python312\Lib\socket.py", line 963, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\main.py", line 401, in generate_sse_stream
+    existing_summary = await get_user_summary_from_redis(redis_key)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\main.py", line 121, in get_user_summary_from_redis
+    summary_json = await redis_client.get(redis_key)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\redis\asyncio\client.py", line 672, in execute_command
+    conn = self.connection or await pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\redis\asyncio\connection.py", line 1141, in get_connection
+    await self.ensure_connection(connection)
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\redis\asyncio\connection.py", line 1174, in ensure_connection
+    await connection.connect()
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\redis\asyncio\connection.py", line 296, in connect
+    await self.connect_check_health(check_health=True)
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\redis\asyncio\connection.py", line 310, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 11001 connecting to redis-19985.c212.ap-south-1-1.ec2.redns.redis-cloud.com:19985. getaddrinfo failed.
+
+2025-09-06 22:39:02,998 - chatbot - ERROR - logger_config.py:104 - log_detailed_error - DETAILED ERROR in unified_chat_handler.generate_sse_stream: read of closed file
+Error Type: ValueError
+Local Variables at Error:
+  chat_uuid: 25d654f8-6645-45b2-a04b-c79506888ffa
+  user_query: Text input: find similar style dresses 
+  intent: SEARCH
+  processing_time: 1.2408854961395264
+Full Traceback:
+Traceback (most recent call last):
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\main.py", line 430, in generate_sse_stream
+    image_content = await image_processor.validate_image_file(image_file)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\image_utils.py", line 31, in validate_image_file
+    content = await file.read()
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\starlette\datastructures.py", line 449, in read
+    return await run_in_threadpool(self.file.read, size)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\starlette\concurrency.py", line 39, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2505, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1005, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 807, in read
+    return self._file.read(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 499, in func_wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+ValueError: read of closed file
+
+2025-09-06 22:39:26,777 - chatbot - ERROR - logger_config.py:104 - log_detailed_error - DETAILED ERROR in unified_chat_handler.generate_sse_stream: I/O operation on closed file.
+Error Type: ValueError
+Local Variables at Error:
+  chat_uuid: 25d654f8-6645-45b2-a04b-c79506888ffa
+  user_query: Text input: find similar style dresses
+  intent: SEARCH
+  processing_time: 2.5654525756835938
+Full Traceback:
+Traceback (most recent call last):
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\main.py", line 430, in generate_sse_stream
+    image_content = await image_processor.validate_image_file(image_file)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\image_utils.py", line 31, in validate_image_file
+    content = await file.read()
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\starlette\datastructures.py", line 448, in read
+    return self.file.read(size)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 807, in read
+    return self._file.read(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^
+ValueError: I/O operation on closed file.
+
+2025-09-06 23:01:40,840 - chatbot - ERROR - logger_config.py:104 - log_detailed_error - DETAILED ERROR in unified_chat_handler.generate_sse_stream: read of closed file
+Error Type: ValueError
+Local Variables at Error:
+  chat_uuid: 25d654f8-6645-45b2-a04b-c79506888ffa
+  user_query: None
+  intent: None
+  processing_time: 0.0019991397857666016
+Full Traceback:
+Traceback (most recent call last):
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\main.py", line 365, in generate_sse_stream
+    image_content = await image_processor.validate_image_file(image_file)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\image_utils.py", line 31, in validate_image_file
+    content = await file.read()
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\starlette\datastructures.py", line 449, in read
+    return await run_in_threadpool(self.file.read, size)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\starlette\concurrency.py", line 39, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2505, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1005, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 807, in read
+    return self._file.read(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 499, in func_wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+ValueError: read of closed file
+
+2025-09-06 23:04:09,539 - chatbot - ERROR - main.py:372 - generate_sse_stream - Error reading image file: read of closed file
+2025-09-06 23:08:07,594 - chatbot - ERROR - main.py:354 - generate_sse_stream - Error reading image file: read of closed file
+2025-09-06 23:17:59,971 - chatbot - ERROR - main.py:363 - generate_sse_stream - Error reading image file: seek of closed file
+2025-09-06 23:18:24,050 - chatbot - ERROR - main.py:363 - generate_sse_stream - Error reading image file: seek of closed file
+2025-09-06 23:28:09,293 - chatbot - ERROR - main.py:359 - generate_sse_stream - Error reading image file: I/O operation on closed file.
+2025-09-06 23:34:40,210 - chatbot - ERROR - main.py:359 - generate_sse_stream - Error reading image file: read of closed file
+2025-09-06 23:43:51,764 - chatbot - ERROR - main.py:360 - generate_sse_stream - Error reading image file: read of closed file
+2025-09-07 09:35:56,037 - chatbot - ERROR - main.py:360 - generate_sse_stream - Error reading image file: read of closed file
+2025-09-07 09:58:48,554 - chatbot - ERROR - main.py:343 - generate_sse_stream - Error reading image file: read of closed file
+2025-09-07 10:03:04,170 - chatbot - ERROR - main.py:349 - generate_sse_stream - Error reading image file: read of closed file
+2025-09-07 10:03:04,338 - chatbot - ERROR - main.py:350 - generate_sse_stream - Full traceback: Traceback (most recent call last):
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\main.py", line 339, in generate_sse_stream
+    raw_content = await image_file.read()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\starlette\datastructures.py", line 449, in read
+    return await run_in_threadpool(self.file.read, size)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\starlette\concurrency.py", line 39, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2505, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1005, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 807, in read
+    return self._file.read(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\AppData\Local\Programs\Python\Python312\Lib\tempfile.py", line 499, in func_wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+ValueError: read of closed file
+
+2025-09-16 13:50:19,475 - chatbot - ERROR - logger_config.py:104 - log_detailed_error - DETAILED ERROR in process_single_value.attempt_1: Error code: 400 - {'error': {'message': "Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{\n   "values":{\n      "white",\n      "coral"\n   }\n}'}}
+Error Type: BadRequestError
+Local Variables at Error:
+  query_value: white
+  product_type: Kurta Sets
+  candidate_attributes: ['primary_color']
+  attempt: 1
+  max_retries: 3
+Full Traceback:
+Traceback (most recent call last):
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\search_engine.py", line 236, in process_single_value
+    gpt_response = await groq_client.chat.completions.create(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\groq\resources\chat\completions.py", line 649, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\groq\_base_client.py", line 1818, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\groq\_base_client.py", line 1526, in request
+    return await self._request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\groq\_base_client.py", line 1627, in _request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': "Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{\n   "values":{\n      "white",\n      "coral"\n   }\n}'}}
+
+2025-09-16 20:05:54,997 - chatbot - ERROR - logger_config.py:104 - log_detailed_error - DETAILED ERROR in generate_zero_results_message: '>' not supported between instances of 'str' and 'int'
+Error Type: TypeError
+Local Variables at Error:
+  user_query: white off shoulder ruffled kurtas for women
+  shortlisted_count: 10
+  model: llama-3.1-8b-instant
+  formatted_prompt: 
+Full Traceback:
+Traceback (most recent call last):
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\groq_utils.py", line 349, in generate_zero_results_message
+    if price and price > 0:
+                 ^^^^^^^^^
+TypeError: '>' not supported between instances of 'str' and 'int'
+
+2025-09-16 20:06:47,509 - chatbot - ERROR - logger_config.py:104 - log_detailed_error - DETAILED ERROR in generate_zero_results_message: '>' not supported between instances of 'str' and 'int'
+Error Type: TypeError
+Local Variables at Error:
+  user_query: white off shoulder ruffled kurtas for women
+  shortlisted_count: 10
+  model: llama-3.1-8b-instant
+  formatted_prompt: 
+Full Traceback:
+Traceback (most recent call last):
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\groq_utils.py", line 349, in generate_zero_results_message
+    if price and price > 0:
+                 ^^^^^^^^^
+TypeError: '>' not supported between instances of 'str' and 'int'
+
+2025-09-17 19:08:11,380 - chatbot - ERROR - logger_config.py:104 - log_detailed_error - DETAILED ERROR in process_single_value.attempt_1: Error code: 400 - {'error': {'message': "Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{\n   "wine-colored",\n   "maroon"\n}'}}
+Error Type: BadRequestError
+Local Variables at Error:
+  query_value: ruffle
+  product_type: Kurta Sets
+  candidate_attributes: ['hemline_style']
+  attempt: 1
+  max_retries: 3
+Full Traceback:
+Traceback (most recent call last):
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\search_engine.py", line 236, in process_single_value
+    gpt_response = await groq_client.chat.completions.create(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\groq\resources\chat\completions.py", line 649, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\groq\_base_client.py", line 1818, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\groq\_base_client.py", line 1526, in request
+    return await self._request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\groq\_base_client.py", line 1627, in _request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': "Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{\n   "wine-colored",\n   "maroon"\n}'}}
+
+2025-09-17 19:09:53,318 - chatbot - ERROR - logger_config.py:104 - log_detailed_error - DETAILED ERROR in process_single_value.attempt_1: Error code: 400 - {'error': {'message': "Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{\n   "embellished",\n   "orange_and_watercolor_style_floral_print",\n   "scattered_seqin_pattern"\n}'}}
+Error Type: BadRequestError
+Local Variables at Error:
+  query_value: embellished
+  product_type: Kurta Sets
+  candidate_attributes: ['print_color_palette']
+  attempt: 1
+  max_retries: 3
+Full Traceback:
+Traceback (most recent call last):
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\search_engine.py", line 236, in process_single_value
+    gpt_response = await groq_client.chat.completions.create(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\groq\resources\chat\completions.py", line 649, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\groq\_base_client.py", line 1818, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\groq\_base_client.py", line 1526, in request
+    return await self._request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\groq\_base_client.py", line 1627, in _request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': "Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{\n   "embellished",\n   "orange_and_watercolor_style_floral_print",\n   "scattered_seqin_pattern"\n}'}}
+
+2025-09-18 10:53:23,755 - chatbot - ERROR - logger_config.py:104 - log_detailed_error - DETAILED ERROR in unified_chat_handler.generate_sse_stream: Error 11001 connecting to redis-19985.c212.ap-south-1-1.ec2.redns.redis-cloud.com:19985. getaddrinfo failed.
+Error Type: ConnectionError
+Local Variables at Error:
+  chat_uuid: 8f8dd9e1-47d0-4f1a-8858-1a83ec2a305b
+  user_query: Text input: show kurtas in the exact same sstyle
+  intent: None
+  processing_time: 0.00799703598022461
+Full Traceback:
+Traceback (most recent call last):
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\redis\asyncio\connection.py", line 302, in connect_check_health
+    await self.retry.call_with_retry(
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\redis\asyncio\retry.py", line 71, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\redis\asyncio\connection.py", line 755, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\AppData\Local\Programs\Python\Python312\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 1078, in create_connection
+    infos = await self._ensure_resolved(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 1454, in _ensure_resolved
+    return await loop.getaddrinfo(host, port, family=family, type=type,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 899, in getaddrinfo
+    return await self.run_in_executor(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\AppData\Local\Programs\Python\Python312\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\AppData\Local\Programs\Python\Python312\Lib\socket.py", line 963, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\main.py", line 418, in generate_sse_stream
+    existing_summary = await get_user_summary_from_redis(redis_key)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\main.py", line 122, in get_user_summary_from_redis
+    summary_json = await redis_client.get(redis_key)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\redis\asyncio\client.py", line 672, in execute_command
+    conn = self.connection or await pool.get_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\redis\asyncio\connection.py", line 1141, in get_connection
+    await self.ensure_connection(connection)
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\redis\asyncio\connection.py", line 1174, in ensure_connection
+    await connection.connect()
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\redis\asyncio\connection.py", line 296, in connect
+    await self.connect_check_health(check_health=True)
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\redis\asyncio\connection.py", line 310, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 11001 connecting to redis-19985.c212.ap-south-1-1.ec2.redns.redis-cloud.com:19985. getaddrinfo failed.
+
+2025-09-18 11:05:30,972 - chatbot - ERROR - logger_config.py:104 - log_detailed_error - DETAILED ERROR in process_single_value.attempt_1: Error code: 400 - {'error': {'message': "Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{\n   "white"\n}'}}
+Error Type: BadRequestError
+Local Variables at Error:
+  query_value: white
+  product_type: Kurta Sets
+  candidate_attributes: ['primary_color']
+  attempt: 1
+  max_retries: 3
+Full Traceback:
+Traceback (most recent call last):
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\search_engine.py", line 236, in process_single_value
+    gpt_response = await groq_client.chat.completions.create(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\groq\resources\chat\completions.py", line 649, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\groq\_base_client.py", line 1818, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\groq\_base_client.py", line 1526, in request
+    return await self._request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\groq\_base_client.py", line 1627, in _request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': "Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{\n   "white"\n}'}}
+
+2025-09-18 11:08:19,386 - chatbot - ERROR - logger_config.py:104 - log_detailed_error - DETAILED ERROR in process_single_value.attempt_1: Error code: 400 - {'error': {'message': "Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{\n   "hot pink"\n}'}}
+Error Type: BadRequestError
+Local Variables at Error:
+  query_value: hot pink
+  product_type: Kurta Sets
+  candidate_attributes: ['primary_color']
+  attempt: 1
+  max_retries: 3
+Full Traceback:
+Traceback (most recent call last):
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\search_engine.py", line 236, in process_single_value
+    gpt_response = await groq_client.chat.completions.create(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\groq\resources\chat\completions.py", line 649, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\groq\_base_client.py", line 1818, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\groq\_base_client.py", line 1526, in request
+    return await self._request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\shopify_venv\Lib\site-packages\groq\_base_client.py", line 1627, in _request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': "Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{\n   "hot pink"\n}'}}
+
+2025-09-18 11:21:14,272 - chatbot - ERROR - logger_config.py:104 - log_detailed_error - DETAILED ERROR in generate_zero_results_message: '\n  "acknowledgement"'
+Error Type: KeyError
+Local Variables at Error:
+  user_query: "plain pink sleeveless kurtas for women"
+  shortlisted_count: 10
+  model: llama-3.1-8b-instant
+  formatted_prompt: 
+Full Traceback:
+Traceback (most recent call last):
+  File "C:\Users\mathe\OneDrive\Documents\EcommChatbotShopify\chatbot_fastapi\groq_utils.py", line 379, in generate_zero_results_message
+    formatted_prompt = ZERO_RESULTS_MESSAGE_PROMPT.format(user_query=context_data)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: '\n  "acknowledgement"'
+

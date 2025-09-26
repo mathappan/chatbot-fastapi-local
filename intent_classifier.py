@@ -1,31 +1,46 @@
 import os
 import json
 from typing import Dict, Optional
-from groq import AsyncGroq
 from fastapi import HTTPException
 
 class IntentClassifier:
     """Classifies user intent for image and text inputs."""
     
     def __init__(self):
-        self.groq_client = AsyncGroq(api_key=os.getenv("GROQ_API_KEY"))
+        # Use centralized groq client from clients.py
+        from clients import groq_client
+        self.groq_client = groq_client
     
-    async def classify_user_intent(self, user_text: str, has_image: bool = False) -> Dict[str, str]:
+    async def classify_user_intent(self, user_text: str, has_image: bool = False, chat_history: list = None) -> Dict[str, str]:
         """
-        Classify user intent into COMPLEMENT, SEARCH, or AMBIGUOUS.
+        Classify user intent into COMPLEMENT, SEARCH, GENERAL, or AMBIGUOUS.
         
         Args:
             user_text: The user's text input
             has_image: Whether the user uploaded an image
+            chat_history: Previous conversation history (list of dicts with 'role' and 'content')
             
         Returns:
             Dict with 'intent' and 'reason'
         """
+        # Format chat history for context
+        chat_context = ""
+        if chat_history:
+            # Get last 3-5 messages for context
+            recent_history = chat_history[-5:]
+            chat_context = "\n".join([
+                f"{'Customer' if msg.get('role') == 'customer' else msg.get('role', 'Unknown').capitalize()}: {msg.get('content', '')}"
+                for msg in recent_history
+            ])
+
         system_prompt = f'''
         You are an expert fashion assistant that classifies user intent.
 
-        User Input: "{user_text}"
+        Current User Input: "{user_text}"
         Has Image: {has_image}
+        
+        Recent Chat History:
+        {chat_context if chat_context else "No previous conversation context."}
 
         Classify the user's intent into exactly ONE of these categories:
 
@@ -33,16 +48,21 @@ class IntentClassifier:
 
         SEARCH - User wants to FIND similar or same items. Keywords: "find", "looking for", "where to buy", "similar to", "like this", "search for", "want this"
 
+        GENERAL - User asks about store policies, shipping, returns, brand info, or general help. Keywords: "return policy", "shipping", "exchange", "contact", "about store", "how to"
+
         AMBIGUOUS - Cannot determine intent clearly, or the request is too vague
 
         Rules:
         - If user has an image and NO text, classify as COMPLEMENT
-        - Be decisive - choose the most likely intent based on language patterns
+        - Use the chat history to better understand the user's current intent
+        - If previous messages show the user was searching and now asks follow-ups, continue with SEARCH intent
+        - If user previously found items and now asks "what goes with this", classify as COMPLEMENT
+        - Be decisive - choose the most likely intent based on language patterns and conversation flow
         - Only use AMBIGUOUS for genuinely unclear requests
 
         Output format (JSON):
         {{
-          "intent": "COMPLEMENT|SEARCH|AMBIGUOUS",
+          "intent": "COMPLEMENT|SEARCH|GENERAL|AMBIGUOUS",
           "reason": "Brief explanation of classification"
         }}
         '''

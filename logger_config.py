@@ -71,6 +71,38 @@ def log_error(error: Exception, context: str = "", additional_info: dict = None)
     
     logger.error(error_msg)
 
+def log_detailed_error(error: Exception, context: str = "", local_vars: dict = None, additional_info: dict = None):
+    """
+    Log error with full traceback, context, and variable contents.
+    
+    Args:
+        error: The exception that occurred
+        context: Additional context about where the error occurred
+        local_vars: Dictionary of local variables at the time of error
+        additional_info: Dictionary of additional information to log
+    """
+    error_msg = f"DETAILED ERROR in {context}: {str(error)}"
+    error_msg += f"\nError Type: {type(error).__name__}"
+    
+    if additional_info:
+        error_msg += f"\nAdditional Info: {additional_info}"
+    
+    if local_vars:
+        error_msg += f"\nLocal Variables at Error:"
+        for var_name, var_value in local_vars.items():
+            try:
+                # Safely convert variable to string, handle large objects
+                var_str = str(var_value)
+                if len(var_str) > 500:
+                    var_str = var_str[:500] + "... (truncated)"
+                error_msg += f"\n  {var_name}: {var_str}"
+            except Exception as var_error:
+                error_msg += f"\n  {var_name}: <Error converting to string: {var_error}>"
+    
+    error_msg += f"\nFull Traceback:\n{traceback.format_exc()}"
+    
+    logger.error(error_msg)
+
 def log_function_call(func_name: str, args: tuple = None, kwargs: dict = None):
     """Log function calls for debugging."""
     log_msg = f"FUNCTION CALL: {func_name}"

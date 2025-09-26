@@ -20,14 +20,13 @@ def create_size_filter(sizes: list) -> str:
     return f"({' | '.join(size_query_parts)})"
 
 
-def create_dynamic_price_filter(user_min_budget: float, user_max_budget: float, max_price_count: int = 6) -> str:
+def create_price_filter(user_min_budget: float, user_max_budget: float) -> str:
     """
-    Create OR filter across all dynamic price fields
+    Create price filter using max_price field
     
     Args:
         user_min_budget: Minimum budget range
         user_max_budget: Maximum budget range
-        max_price_count: Number of price fields to check (default 6 for price1-price6)
         
     Returns:
         str: Redis filter string for price range
@@ -39,14 +38,7 @@ def create_dynamic_price_filter(user_min_budget: float, user_max_budget: float, 
     min_price = user_min_budget if user_min_budget else 0
     max_price = user_max_budget if user_max_budget else 50000  # High default max
     
-    price_conditions = []
-    
-    for i in range(1, max_price_count + 1):
-        price_conditions.append(f"@price{i}:[{min_price} {max_price}]")
-    
-    if price_conditions:
-        return f"({' | '.join(price_conditions)})"
-    return ""
+    return f"@max_price:[{min_price} {max_price}]"
 
 
 def create_product_type_filter(allowed_product_types: list) -> str:
@@ -87,13 +79,57 @@ def create_exclude_filter(excluded_ids: list) -> str:
     return " ".join([f"-@product_id:{pid}" for pid in excluded_ids])
 
 
+def create_gender_filter(genders) -> str:
+    """
+    Create Redis filter for multiple genders including unisex products
+    
+    Args:
+        genders: List of gender preferences or single gender string
+        
+    Returns:
+        str: Redis filter string for gender
+    """
+    if not genders:
+        return ""
+    
+    # Handle both list and string input for backward compatibility
+    if isinstance(genders, str):
+        genders = [genders]
+    
+    if not isinstance(genders, list) or len(genders) == 0:
+        return ""
+    
+    # Create filter parts for each gender
+    gender_parts = []
+    for gender in genders:
+        if gender and isinstance(gender, str):
+            gender_parts.append(f"@gender:{{{gender}}}")
+    
+    # Always include unisex unless the user specifically only wants unisex
+    if not (len(genders) == 1 and genders[0] == "unisex"):
+        gender_parts.append("@gender:{unisex}")
+    
+    # Remove duplicates while preserving order
+    seen = set()
+    unique_parts = []
+    for part in gender_parts:
+        if part not in seen:
+            seen.add(part)
+            unique_parts.append(part)
+    
+    if len(unique_parts) == 1:
+        return unique_parts[0]
+    else:
+        return f"({' | '.join(unique_parts)})"
+
+
 def build_combined_filter(
     allowed_product_types: list = None,
     sizes: list = None,
     user_min_budget: float = None,
     user_max_budget: float = None,
     excluded_ids: list = None,
-    max_price_count: int = 6
+    gender = None
 ) -> str:
     """
     Build a combined Redis filter string with all specified filters
@@ -104,7 +140,7 @@ def build_combined_filter(
         user_min_budget: Minimum price range
         user_max_budget: Maximum price range
         excluded_ids: List of product IDs to exclude
-        max_price_count: Number of dynamic price fields to check
+        gender: Gender preference(s) - can be string or list (will include unisex automatically)
         
     Returns:
         str: Combined Redis filter string
@@ -121,8 +157,13 @@ def build_combined_filter(
     if size_filter:
         filters.append(size_filter)
     
+    # Add gender filter
+    gender_filter = create_gender_filter(gender)
+    if gender_filter:
+        filters.append(gender_filter)
+    
     # Add price filter
-    price_filter = create_dynamic_price_filter(user_min_budget, user_max_budget, max_price_count)
+    price_filter = create_price_filter(user_min_budget, user_max_budget)
     if price_filter:
         filters.append(price_filter)
     
