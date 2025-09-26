@@ -6,7 +6,7 @@ __pycache__/
 *.pdb
 
 # Logs
-logs/*.log
+logs/
 
 # Development/test data
 previous_data_files/
