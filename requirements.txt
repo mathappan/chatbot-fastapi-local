@@ -5,6 +5,6 @@ groq==0.28.0
 python-dotenv==1.1.1
 pydantic==2.11.7
 voyageai==0.2.2
-numpy==1.24.3
+numpy==2.1.0
 openai==1.51.2
 pinecone-client==3.2.2 
