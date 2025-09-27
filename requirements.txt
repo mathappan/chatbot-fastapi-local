@@ -1,5 +1,4 @@
-fastapi==0.115.13
-uvicorn[standard]==0.34.3
+fastapi[standard]==0.115.13
 redis[hiredis]==6.2.0
 groq==0.28.0
 python-dotenv==1.1.1
