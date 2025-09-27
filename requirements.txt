@@ -4,7 +4,6 @@ redis[hiredis]==6.2.0
 groq==0.28.0
 python-dotenv==1.1.1
 pydantic==2.11.7
-sse-starlette==2.2.2
 voyageai==0.2.2
 numpy==1.24.3
 openai==1.51.2
